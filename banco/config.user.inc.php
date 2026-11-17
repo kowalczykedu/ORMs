@@ -1,0 +1,1 @@
+<?php $cfg['ThemeDefault'] = 'blueberry';
