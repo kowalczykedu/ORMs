@@ -32,6 +32,12 @@ chmod +x setup.sh
 npm start
 ```
 
+### 4. Abrir os slides da apresentação (em qualquer máquina)
+Na raiz do repositório (ou passando o caminho do script de qualquer pasta):
+```bash
+./slides.sh
+```
+
 ---
 
 ## Roteiro da Apresentação no Menu (`npm start`)
