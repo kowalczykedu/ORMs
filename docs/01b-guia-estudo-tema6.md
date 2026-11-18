@@ -45,7 +45,7 @@ Como este é o primeiro contato do trio com o Prisma, entenda exatamente os **4 
 
 #### Passo 1: Definir o mapa no `schema.prisma`
 O `schema.prisma` é o arquivo central onde você diz ao Prisma: *"este é o banco MySQL e estas são as tabelas dele"*.
-Como o banco da TechStore já existe (`banco/init.sql`) com nomes de tabelas e colunas no plural e em `snake_case` (ex.: `data_pedido`, `itens_pedido`), usamos `@map` (para colunas) e `@@map` (para tabelas):
+Como o banco da TechStore já existe (`banco/init.sql`) com nomes de tabelas e colunas no plural e em `snake_case` (ex.: `data_pedido`, `itens_pedido`), usamos `@map` (para colunas) e `@@map` (para tabelas). **Importante:** nem toda coluna precisa de `@map` — ele só é necessário quando o nome no TypeScript difere do nome no MySQL (`dataCadastro` ↔ `data_cadastro`); campos com nome idêntico (`id`, `nome`, `email`, `preco`, `estoque`) já são ligados automaticamente pelo Prisma:
 
 ```prisma
 // 1. Quem vai gerar o código TypeScript?
