@@ -8,22 +8,28 @@ import {
 import { demonstrarSqlManual } from "./04-sql-manual";
 import { demonstrarComparativo } from "./05-comparativo";
 import { desconectarPrisma } from "./lib/prisma";
-import { cor, fecharTerminal, lerOpcao, linha, pausar } from "./lib/terminal";
+import { cor, fecharTerminal, lerOpcao, pausar } from "./lib/terminal";
 
 function exibirMenu(): void {
-  console.clear();
-  linha();
-  console.log(`${cor.bold}${cor.cyan}  TECHSTORE CLI — TEMA 6: ORM (TypeScript + Prisma) & N+1${cor.reset}`);
-  linha();
-  console.log(`  ${cor.bold}1)${cor.reset} Parte 1  — O que é um ORM (model = tabela, objeto = linha)`);
-  console.log(`  ${cor.bold}2)${cor.reset} Parte 2  — Problema N+1 Clássico (pedidos -> clientes + general_log)`);
-  console.log(`  ${cor.bold}3)${cor.reset} Parte 3a — Correção com include padrão (WHERE id IN (...))`);
-  console.log(`  ${cor.bold}4)${cor.reset} Parte 3b — Correção com relationLoadStrategy: "join" (1 query)`);
-  console.log(`  ${cor.bold}5)${cor.reset} Parte 3c — Enxugando colunas com select (pedidos + clientes + itens)`);
-  console.log(`  ${cor.bold}6)${cor.reset} Parte 3d — SQL Manual seguro via $queryRaw (Ranking + Sem pedidos)`);
-  console.log(`  ${cor.bold}7)${cor.reset} Comparativo Lado a Lado (N+1 × include IN × relationLoadStrategy: "join")`);
-  console.log(`  ${cor.bold}0)${cor.reset} Sair`);
-  linha();
+  const largura = 74;
+  const separador = `${cor.gray}${"─".repeat(largura)}${cor.reset}`;
+  const menu = [
+    "",
+    separador,
+    `${cor.bold}${cor.cyan}  TECHSTORE CLI — TEMA 6: ORM (TypeScript + Prisma) & N+1${cor.reset}`,
+    separador,
+    `  ${cor.bold}1)${cor.reset} Parte 1  — O que é um ORM (model = tabela, objeto = linha)`,
+    `  ${cor.bold}2)${cor.reset} Parte 2  — Problema N+1 Clássico (pedidos -> clientes + general_log)`,
+    `  ${cor.bold}3)${cor.reset} Parte 3a — Correção com include padrão (WHERE id IN (...))`,
+    `  ${cor.bold}4)${cor.reset} Parte 3b — Correção com relationLoadStrategy: "join" (1 query)`,
+    `  ${cor.bold}5)${cor.reset} Parte 3c — Enxugando colunas com select (pedidos + clientes + itens)`,
+    `  ${cor.bold}6)${cor.reset} Parte 3d — SQL Manual seguro via $queryRaw (Ranking + Sem pedidos)`,
+    `  ${cor.bold}7)${cor.reset} Comparativo Lado a Lado (N+1 × include IN × relationLoadStrategy: "join")`,
+    `  ${cor.bold}0)${cor.reset} Sair`,
+    separador,
+  ].join("\n");
+
+  console.log(menu);
 }
 
 async function main(): Promise<void> {

@@ -8,7 +8,30 @@ Aplicação simples de terminal em **TypeScript + Prisma** conectada ao banco re
 
 ---
 
-## Como preparar no Notebook ou no PC do Laboratório
+## Como preparar no Windows (sem Docker, apenas com Node.js)
+
+Na raiz do repositório, execute um único comando no PowerShell ou terminal:
+
+```powershell
+npm start
+```
+
+O script [iniciar-windows.ps1](iniciar-windows.ps1) automatiza tudo na primeira execução (sem alterar os arquivos originais de `banco/`):
+1. Baixa e extrai o **MySQL 8.0 portátil** oficial em `.mysql-win/` (ignorado pelo Git);
+2. Inicializa o servidor local na porta `3306`, configura `root` / `root` e importa `banco/init.sql`;
+3. Cria `app/.env` a partir de `app/.env.example`, instala as dependências (`npm install`) e gera o Prisma Client (`npx prisma generate`);
+4. Abre o menu interativo (`npm start` dentro de `app/`).
+
+Comandos extras na raiz do projeto (Windows):
+- `npm run setup` — prepara o banco portátil e a aplicação `app/` sem abrir o menu;
+- `npm run stop:db` — encerra o MySQL portátil em segundo plano ([parar-windows.ps1](parar-windows.ps1));
+- `npm run slides` — abre `docs/slides-exemplo.html` diretamente no navegador padrão.
+
+*(Nas execuções seguintes, `npm start` apenas garante que o MySQL local está ativo e abre o menu diretamente em segundos. No Git Bash, `./slides.sh` também funciona.)*
+
+---
+
+## Como preparar no Linux / PC do Laboratório (com Docker)
 
 ### 1. Subir o banco MySQL da disciplina
 Na pasta `banco/`, inicie os containers (não altera nem modifica os arquivos originais):
