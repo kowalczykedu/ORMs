@@ -649,7 +649,7 @@
               </p>
               <div style="margin-top: 42px; display: flex; flex-direction: column; gap: 6px;">
                 <span style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-light); font-weight: 700;">Apresentação do Trio</span>
-                <span style="font-size: 18px; font-weight: 600; color: var(--text);">Integrante 1 • Integrante 2 • Integrante 3</span>
+                <span style="font-size: 18px; font-weight: 600; color: var(--text);">Eduardo • Geovane • Luis</span>
               </div>
             </div>
 
@@ -762,63 +762,96 @@
           <div class="slide-num">3 / 12</div>
         </div>
 
-        <div class="slide-body">
+        <div class="slide-body" style="gap: 14px;">
           <div class="grid-2">
-            <div class="card card-blue" style="justify-content: space-between;">
+            <div class="card card-blue" style="justify-content: space-between; padding: 14px 18px; gap: 10px;">
               <div>
-                <div class="card-title" style="font-size: 21px;">
+                <div class="card-title" style="font-size: 19px;">
                   <span>🔌</span> Analogia: Tradutor / Adaptador
                 </div>
-                <p class="card-text" style="margin-top: 10px; color: var(--text);">
+                <p class="card-text" style="margin-top: 6px; font-size: 15px; line-height: 1.4; color: var(--text);">
                   O código fala <strong>Objetos TypeScript</strong> e o banco fala <strong>Tabelas SQL</strong>. O ORM funciona como um adaptador simultâneo entre os dois mundos.
                 </p>
               </div>
 
-              <div class="card card-white" style="padding: 18px; gap: 10px; text-align: center;">
-                <div style="display: flex; align-items: center; justify-content: space-around; font-weight: 800; font-size: 16px;">
-                  <span style="padding: 10px 14px; background: var(--blue-bg); color: var(--blue); border-radius: 8px;">App TS<br/><small style="font-weight: 600;">Objetos</small></span>
-                  <span style="font-size: 22px; color: var(--text-light);">⇄</span>
-                  <span style="padding: 10px 14px; background: #0f172a; color: #ffffff; border-radius: 8px;">Prisma<br/><small style="font-weight: 500; color: #94a3b8;">ORM</small></span>
-                  <span style="font-size: 22px; color: var(--text-light);">⇄</span>
-                  <span style="padding: 10px 14px; background: var(--bg-code); color: var(--text); border-radius: 8px;">MySQL<br/><small style="font-weight: 600; color: var(--text-muted);">SQL</small></span>
+              <div class="card card-white" style="padding: 12px 14px; gap: 8px; text-align: center;">
+                <div style="display: flex; align-items: center; justify-content: space-around; font-weight: 800; font-size: 15px;">
+                  <span style="padding: 7px 12px; background: var(--blue-bg); color: var(--blue); border-radius: 8px;">App TS<br/><small style="font-weight: 600;">Objetos</small></span>
+                  <span style="font-size: 20px; color: var(--text-light);">⇄</span>
+                  <span style="padding: 7px 12px; background: #0f172a; color: #ffffff; border-radius: 8px;">Prisma<br/><small style="font-weight: 500; color: #94a3b8;">ORM</small></span>
+                  <span style="font-size: 20px; color: var(--text-light);">⇄</span>
+                  <span style="padding: 7px 12px; background: var(--bg-code); color: var(--text); border-radius: 8px;">MySQL<br/><small style="font-weight: 600; color: var(--text-muted);">SQL</small></span>
                 </div>
               </div>
 
-              <div style="font-size: 16px; font-weight: 700; color: #0369a1;">
+              <div style="font-size: 15px; font-weight: 700; color: #0369a1;">
                 “Você escreve em objetos; o ORM traduz para SQL.”
               </div>
             </div>
 
-            <div style="display: flex; flex-direction: column; justify-content: center; gap: 16px;">
-              <div style="font-size: 16px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em;">
+            <div style="display: flex; flex-direction: column; justify-content: center; gap: 10px;">
+              <div style="font-size: 14px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em;">
                 Mapeamento no <code class="inline">schema.prisma</code>
               </div>
-              <table>
+              <table style="font-size: 15px;">
                 <thead>
                   <tr>
-                    <th>No Código (Prisma / TS)</th>
-                    <th>No Banco (MySQL)</th>
+                    <th style="padding: 9px 14px; font-size: 13px;">No Código (Prisma / TS)</th>
+                    <th style="padding: 9px 14px; font-size: 13px;">No Banco (MySQL)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><code class="inline">model Cliente</code></td>
-                    <td>Tabela <code class="inline">clientes</code> (<code class="inline">@@map</code>)</td>
+                    <td style="padding: 9px 14px;"><code class="inline">model Cliente</code></td>
+                    <td style="padding: 9px 14px;">Tabela <code class="inline">clientes</code> (<code class="inline">@@map</code>)</td>
                   </tr>
                   <tr>
-                    <td>Objeto <code class="inline">cliente</code></td>
-                    <td><strong>1 Linha</strong> (registro)</td>
+                    <td style="padding: 9px 14px;">Objeto <code class="inline">cliente</code></td>
+                    <td style="padding: 9px 14px;"><strong>1 Linha</strong> (registro)</td>
                   </tr>
                   <tr>
-                    <td><code class="inline">dataCadastro</code></td>
-                    <td>Coluna <code class="inline">data_cadastro</code> (<code class="inline">@map</code>)</td>
+                    <td style="padding: 9px 14px;"><code class="inline">dataCadastro</code></td>
+                    <td style="padding: 9px 14px;">Coluna <code class="inline">data_cadastro</code> (<code class="inline">@map</code>)</td>
                   </tr>
                   <tr>
-                    <td><code class="inline">@relation(...)</code></td>
-                    <td>Chave Estrangeira (<code class="inline">FK</code>)</td>
+                    <td style="padding: 9px 14px;"><code class="inline">@relation(...)</code></td>
+                    <td style="padding: 9px 14px;">Chave Estrangeira (<code class="inline">FK</code>)</td>
                   </tr>
                 </tbody>
               </table>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="code-panel">
+              <div class="code-bar" style="padding: 7px 14px; font-size: 12px;">
+                <span><span class="code-dots"><span></span><span></span><span></span></span>Model Cliente (Prisma)</span>
+                <span style="color: var(--blue);">schema.prisma</span>
+              </div>
+              <pre style="font-size: 12.5px; line-height: 1.38; padding: 10px 14px;"><span class="kw">model</span> <span class="fn">Cliente</span> {
+  id           Int      @id @default(autoincrement())
+  nome         String   @db.VarChar(<span class="num">100</span>)
+  email        String   @unique @db.VarChar(<span class="num">100</span>)
+  cidade       String   @db.VarChar(<span class="num">50</span>)
+  dataCadastro DateTime @map(<span class="str">"data_cadastro"</span>) @db.Date
+  pedidos      Pedido[]
+
+  @@map(<span class="str">"clientes"</span>)
+}</pre>
+            </div>
+
+            <div class="code-panel">
+              <div class="code-bar" style="padding: 7px 14px; font-size: 12px;">
+                <span><span class="code-dots"><span></span><span></span><span></span></span>Tabela clientes (MySQL)</span>
+                <span>banco/init.sql</span>
+              </div>
+              <pre style="font-size: 12.5px; line-height: 1.38; padding: 10px 14px;"><span class="kw">CREATE TABLE IF NOT EXISTS</span> clientes (
+    id <span class="kw">INT AUTO_INCREMENT PRIMARY KEY</span>,
+    nome <span class="kw">VARCHAR</span>(<span class="num">100</span>) <span class="kw">NOT NULL</span>,
+    email <span class="kw">VARCHAR</span>(<span class="num">100</span>) <span class="kw">NOT NULL UNIQUE</span>,
+    cidade <span class="kw">VARCHAR</span>(<span class="num">50</span>) <span class="kw">NOT NULL</span>,
+    data_cadastro <span class="kw">DATE NOT NULL</span>
+) ENGINE=InnoDB;</pre>
             </div>
           </div>
         </div>
@@ -839,42 +872,63 @@
           <div class="slide-num">4 / 12</div>
         </div>
 
-        <div class="slide-body">
+        <div class="slide-body" style="gap: 12px;">
           <div class="grid-2">
             <div class="code-panel">
-              <div class="code-bar">
-                <span><span class="code-dots"><span></span><span></span><span></span></span>Prisma Client (TypeScript)</span>
+              <div class="code-bar" style="padding: 7px 14px; font-size: 12px;">
+                <span><span class="code-dots"><span></span><span></span><span></span></span>Prisma Client — Busca única (TypeScript)</span>
                 <span style="color: var(--blue);">01-orm-basico.ts</span>
               </div>
-              <pre><span class="kw">const</span> cliente = <span class="kw">await</span> prisma.cliente.<span class="fn">findUnique</span>({
+              <pre style="font-size: 13.5px; line-height: 1.4; padding: 10px 14px;"><span class="kw">const</span> cliente = <span class="kw">await</span> prisma.cliente.<span class="fn">findUnique</span>({
   where: { id: <span class="num">1</span> },
 });
-
-<span class="cm">// Retorno tipado automaticamente:</span>
-<span class="cm">// cliente.nome, cliente.email, cliente.dataCadastro</span></pre>
+<span class="cm">// Retorno tipado: cliente.nome, cliente.email, cliente.dataCadastro</span></pre>
             </div>
 
             <div class="code-panel">
-              <div class="code-bar">
-                <span><span class="code-dots"><span></span><span></span><span></span></span>SQL Equivalente no MySQL</span>
+              <div class="code-bar" style="padding: 7px 14px; font-size: 12px;">
+                <span><span class="code-dots"><span></span><span></span><span></span></span>SQL Equivalente — Busca única (MySQL)</span>
                 <span>Gerado pelo ORM</span>
               </div>
-              <pre><span class="kw">SELECT</span>
-  id, nome, email, cidade, data_cadastro
+              <pre style="font-size: 13.5px; line-height: 1.4; padding: 10px 14px;"><span class="kw">SELECT</span> id, nome, email, cidade, data_cadastro
 <span class="kw">FROM</span> clientes
 <span class="kw">WHERE</span> id = <span class="num">1</span>
 <span class="kw">LIMIT</span> <span class="num">1</span>;</pre>
             </div>
           </div>
 
-          <div class="card card-white" style="padding: 16px 22px; flex-direction: row; align-items: center; justify-content: space-between;">
-            <div class="card-text" style="font-size: 16px;">
+          <div class="grid-2">
+            <div class="code-panel">
+              <div class="code-bar" style="padding: 7px 14px; font-size: 12px;">
+                <span><span class="code-dots"><span></span><span></span><span></span></span>Prisma Client — Listagem filtrada (TypeScript)</span>
+                <span style="color: var(--blue);">01-orm-basico.ts</span>
+              </div>
+              <pre style="font-size: 13.5px; line-height: 1.4; padding: 10px 14px;"><span class="kw">const</span> produtos = <span class="kw">await</span> prisma.produto.<span class="fn">findMany</span>({
+  where: { categoriaId: <span class="num">1</span> },
+  orderBy: { preco: <span class="str">"desc"</span> },
+});</pre>
+            </div>
+
+            <div class="code-panel">
+              <div class="code-bar" style="padding: 7px 14px; font-size: 12px;">
+                <span><span class="code-dots"><span></span><span></span><span></span></span>SQL Equivalente — Listagem filtrada (MySQL)</span>
+                <span>Gerado pelo ORM</span>
+              </div>
+              <pre style="font-size: 13.5px; line-height: 1.4; padding: 10px 14px;"><span class="kw">SELECT</span> id, nome, preco, estoque, categoria_id
+<span class="kw">FROM</span> produtos
+<span class="kw">WHERE</span> categoria_id = <span class="num">1</span>
+<span class="kw">ORDER BY</span> preco <span class="kw">DESC</span>;</pre>
+            </div>
+          </div>
+
+          <div class="card card-white" style="padding: 10px 18px; flex-direction: row; align-items: center; justify-content: space-between;">
+            <div class="card-text" style="font-size: 15px;">
               <strong>Fluxo do Prisma:</strong> <code class="inline">schema.prisma</code> → <code class="inline">npx prisma generate</code> → <code class="inline">PrismaClient</code> tipado em tempo de execução.
             </div>
             <span class="badge-count" style="background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border);">Somente leitura</span>
           </div>
 
-          <div class="demo-banner demo-blue">
+          <div class="demo-banner demo-blue" style="padding: 10px 18px;">
             <span>▶ DEMO AO VIVO — TechStore CLI: Opção 1 (O que é um ORM)</span>
             <span class="demo-cmd">npm start → [1]</span>
           </div>
@@ -1195,7 +1249,7 @@
           <div class="slide-num">9 / 12</div>
         </div>
 
-        <div class="slide-body">
+        <div class="slide-body" style="gap: 16px;">
           <div class="grid-2">
             <div class="code-panel">
               <div class="code-bar">
@@ -1214,25 +1268,26 @@
 });</pre>
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 18px; justify-content: center;">
-              <div class="card card-green" style="padding: 20px;">
+            <div style="display: flex; flex-direction: column; gap: 16px; justify-content: center;">
+              <div class="card card-green" style="padding: 18px 20px;">
                 <div class="card-title" style="color: var(--green-dark);">1. Evite “SELECT *” disfarçado</div>
                 <div class="card-text">
                   <code class="inline">include</code> carrega <strong>todas</strong> as colunas da tabela relacionada. Com <code class="inline">select</code>, trafega apenas o que a tela precisa.
                 </div>
               </div>
 
-              <div class="card card-amber" style="padding: 20px;">
+              <div class="card card-amber" style="padding: 18px 20px;">
                 <div class="card-title" style="color: #b45309;">2. Atenção ao N+1 em cascata</div>
                 <div class="card-text">
                   Em <code class="inline">pedidos → itens → produtos</code>, loops aninhados multiplicam queries exponencialmente. <code class="inline">select</code>/<code class="inline">include</code> aninhado resolve em lote!
                 </div>
               </div>
-
-              <div style="font-size: 14px; color: var(--text-light); padding-left: 4px;">
-                <em>* Disponível na Opção 5 do TechStore CLI se a banca solicitar demonstração.</em>
-              </div>
             </div>
+          </div>
+
+          <div class="demo-banner demo-green">
+            <span>▶ DEMO AO VIVO — TechStore CLI: Opção 5 (select enxuto em pedidos + clientes + itens)</span>
+            <span class="demo-cmd">npm start → [5]</span>
           </div>
         </div>
 
@@ -1252,32 +1307,51 @@
           <div class="slide-num">10 / 12</div>
         </div>
 
-        <div class="slide-body" style="gap: 16px;">
-          <div class="grid-2">
-            <div style="display: flex; flex-direction: column; gap: 14px; justify-content: center;">
-              <div class="analogy-strip">
-                <div class="analogy-icon" style="background: var(--amber-bg); color: var(--amber);">🔐</div>
-                <div style="font-size: 16px; color: var(--text-muted);">
-                  <strong>Analogia:</strong> <em>Acesso direto ao cofre / relatório gerencial</em> — ir direto ao MySQL quando o atalho do ORM limita a consulta.
-                </div>
-              </div>
-
-              <div class="card card-white" style="padding: 18px 22px; gap: 12px;">
-                <div style="font-size: 15px; font-weight: 800; color: #b45309; text-transform: uppercase;">3 Critérios Objetivos</div>
-                <ul class="clean list-amber">
-                  <li><strong>Agregações com cálculo:</strong> <code class="inline">SUM(quantidade * preco_unitario)</code> com <code class="inline">GROUP BY</code>.</li>
-                  <li><strong>Filtros relacionais diretos:</strong> <code class="inline">LEFT JOIN ... WHERE p.id IS NULL</code> (clientes sem compras).</li>
-                  <li><strong>Relatórios pesados / tuning:</strong> quando o SQL gerado pelo ORM fica verboso ou subótimo.</li>
-                </ul>
+        <div class="slide-body" style="gap: 12px;">
+          <div style="display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 16px; align-items: stretch;">
+            <div class="analogy-strip" style="padding: 10px 14px; gap: 12px;">
+              <div class="analogy-icon" style="background: var(--amber-bg); color: var(--amber); width: 38px; height: 38px; font-size: 19px;">🔐</div>
+              <div style="font-size: 14px; line-height: 1.38; color: var(--text-muted);">
+                <strong>Analogia:</strong> <em>Acesso direto ao cofre / relatório gerencial</em> — ir direto ao MySQL quando o atalho do ORM limita a consulta.
               </div>
             </div>
 
+            <div class="card card-white" style="padding: 10px 16px; gap: 6px;">
+              <div style="font-size: 13px; font-weight: 800; color: #b45309; text-transform: uppercase;">3 Critérios Objetivos</div>
+              <div style="font-size: 13.5px; line-height: 1.4; color: var(--text-muted);">
+                <strong>• Agregações:</strong> <code class="inline">SUM(...)</code> + <code class="inline">GROUP BY</code> &nbsp;|&nbsp;
+                <strong>• Filtros diretos:</strong> <code class="inline">LEFT JOIN ... IS NULL</code> &nbsp;|&nbsp;
+                <strong>• Tuning:</strong> relatórios pesados.
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2">
             <div class="code-panel" style="justify-content: space-between;">
-              <div class="code-bar">
-                <span><span class="code-dots"><span></span><span></span><span></span></span>SQL Seguro via $queryRaw</span>
+              <div class="code-bar" style="padding: 7px 14px; font-size: 12px;">
+                <span><span class="code-dots"><span></span><span></span><span></span></span>Ranking de Faturamento ($queryRaw)</span>
                 <span style="color: var(--amber);">04-sql-manual.ts</span>
               </div>
-              <pre class="pre-compact"><span class="cm">// Clientes que NUNCA compraram (LEFT JOIN)</span>
+              <pre style="font-size: 12.2px; line-height: 1.35; padding: 10px 14px;"><span class="cm">// Top 10 Clientes por Faturamento (SUM + GROUP BY)</span>
+<span class="kw">const</span> ranking = <span class="kw">await</span> prisma.<span class="fn">$queryRaw</span><span class="str">`
+  SELECT c.nome AS cliente,
+    COUNT(DISTINCT p.id) AS totalPedidos,
+    SUM(ip.quantidade * ip.preco_unitario) AS totalGasto
+  FROM clientes c
+  INNER JOIN pedidos p ON p.cliente_id = c.id
+  INNER JOIN itens_pedido ip ON ip.pedido_id = p.id
+  WHERE p.status &lt;&gt; 'cancelado'
+  GROUP BY c.id, c.nome
+  ORDER BY totalGasto DESC LIMIT 10
+`</span>;</pre>
+            </div>
+
+            <div class="code-panel" style="justify-content: space-between;">
+              <div class="code-bar" style="padding: 7px 14px; font-size: 12px;">
+                <span><span class="code-dots"><span></span><span></span><span></span></span>Clientes sem Compras ($queryRaw)</span>
+                <span style="color: var(--amber);">04-sql-manual.ts</span>
+              </div>
+              <pre style="font-size: 12.2px; line-height: 1.35; padding: 10px 14px;"><span class="cm">// Clientes que NUNCA compraram (LEFT JOIN)</span>
 <span class="kw">const</span> semPedidos = <span class="kw">await</span> prisma.<span class="fn">$queryRaw</span><span class="str">`
   SELECT c.id, c.nome, c.email, c.cidade
   FROM clientes c
@@ -1285,15 +1359,15 @@
   WHERE p.id IS NULL
   ORDER BY c.id ASC
 `</span>;</pre>
-              <div style="padding: 12px 18px; background: var(--amber-bg); border-top: 1px solid var(--amber-border); font-size: 14px; color: #92400e;">
-                <strong>Segurança:</strong> <em>tagged template</em> do <code class="inline">$queryRaw</code> parametriza variáveis automaticamente contra SQL Injection.
+              <div style="padding: 8px 14px; background: var(--amber-bg); border-top: 1px solid var(--amber-border); font-size: 12.5px; color: #92400e;">
+                <strong>Segurança:</strong> <em>tagged template</em> do <code class="inline">$queryRaw</code> parametriza variáveis contra SQL Injection.
               </div>
             </div>
           </div>
 
-          <div class="demo-banner demo-amber">
-            <span>▶ DEMO AO VIVO — Opção 6 ($queryRaw: Ranking + Sem pedidos) e Opção 7 (Comparativo)</span>
-            <span class="demo-cmd">npm start → [6] e [7]</span>
+          <div class="demo-banner demo-amber" style="padding: 10px 18px;">
+            <span>▶ DEMO AO VIVO — TechStore CLI: Opção 6 ($queryRaw: Ranking + Sem pedidos)</span>
+            <span class="demo-cmd">npm start → [6]</span>
           </div>
         </div>
 
@@ -1351,9 +1425,14 @@
             </tbody>
           </table>
 
-          <div class="card card-blue" style="flex-direction: row; align-items: center; justify-content: space-between; padding: 16px 24px;">
+          <div class="card card-blue" style="flex-direction: row; align-items: center; justify-content: space-between; padding: 14px 22px;">
             <span style="font-size: 17px; font-weight: 700; color: #0369a1;">Ganho na TechStore ao sair do N+1 para Eager Loading:</span>
-            <span style="font-size: 22px; font-weight: 900; color: var(--green-dark);">36 → 2 ou 1 query (−94% a −97% idas ao banco)</span>
+            <span style="font-size: 21px; font-weight: 900; color: var(--green-dark);">36 → 2 ou 1 query (−94% a −97% idas ao banco)</span>
+          </div>
+
+          <div class="demo-banner demo-blue">
+            <span>▶ DEMO AO VIVO — TechStore CLI: Opção 7 (Comparativo Lado a Lado)</span>
+            <span class="demo-cmd">npm start → [7]</span>
           </div>
         </div>
 
@@ -1396,7 +1475,7 @@
           </div>
 
           <div style="text-align: center; padding-top: 8px;">
-            <span style="font-size: 26px; font-weight: 800; color: var(--text);">Obrigado! Perguntas da banca?</span>
+            <span style="font-size: 26px; font-weight: 800; color: var(--text);">Obrigado!</span>
           </div>
         </div>
 

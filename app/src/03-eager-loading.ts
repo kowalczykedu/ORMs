@@ -87,7 +87,6 @@ export async function demonstrarSelectEnxuto(): Promise<void> {
         relationLoadStrategy: "query",
         select: {
           id: true,
-          dataPedido: true,
           status: true,
           cliente: {
             select: {
@@ -107,7 +106,7 @@ export async function demonstrarSelectEnxuto(): Promise<void> {
 
   subtitulo(`Amostra dos registros retornados (primeiros 8 de ${resultado.length} pedidos)`);
   imprimirTabela(
-    ["Pedido", "Data", "Status", "Cliente", "Qtd Itens", "Total (R$)"],
+    ["Pedido", "Status", "Cliente", "Qtd Itens", "Total (R$)"],
     resultado.slice(0, 8).map((p) => {
       const total = p.itens.reduce(
         (acc, item) => acc + item.quantidade * Number(item.precoUnitario),
@@ -115,7 +114,6 @@ export async function demonstrarSelectEnxuto(): Promise<void> {
       );
       return [
         p.id,
-        p.dataPedido.toISOString().slice(0, 10),
         p.status,
         p.cliente.nome,
         p.itens.length,
