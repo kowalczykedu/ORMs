@@ -91,6 +91,145 @@
       display: flex;
     }
 
+    .slide.active.dir-next {
+      animation: slideInNext 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .slide.active.dir-prev {
+      animation: slideInPrev 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .slide.active .slide-body > *:not(.fragment) {
+      animation: itemEnter 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    .slide.active .slide-body > *:not(.fragment):nth-child(1) { animation-delay: 0.05s; }
+    .slide.active .slide-body > *:not(.fragment):nth-child(2) { animation-delay: 0.14s; }
+    .slide.active .slide-body > *:not(.fragment):nth-child(3) { animation-delay: 0.23s; }
+    .slide.active .slide-body > *:not(.fragment):nth-child(4) { animation-delay: 0.32s; }
+
+    .fragment {
+      opacity: 0;
+      transform: translateY(14px) scale(0.985);
+      pointer-events: none;
+      transition: opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .fragment.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    @keyframes slideInNext {
+      from { opacity: 0; transform: translateX(28px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInPrev {
+      from { opacity: 0; transform: translateX(-28px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes itemEnter {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 1. Table rows staggered reveal */
+    .slide.active tbody tr {
+      animation: rowEnter 0.36s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .slide.active tbody tr:nth-child(1) { animation-delay: 0.16s; }
+    .slide.active tbody tr:nth-child(2) { animation-delay: 0.23s; }
+    .slide.active tbody tr:nth-child(3) { animation-delay: 0.30s; }
+    .slide.active tbody tr:nth-child(4) { animation-delay: 0.37s; }
+    .slide.active tbody tr:nth-child(5) { animation-delay: 0.44s; }
+
+    @keyframes rowEnter {
+      from { opacity: 0; transform: translateX(-10px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* 2. SVG network arrows draw-in */
+    .svg-arrow {
+      stroke-dasharray: 370;
+      stroke-dashoffset: 370;
+    }
+    .svg-label {
+      opacity: 0;
+    }
+    .slide.active .card:not(.fragment) .svg-arrow,
+    .slide.active .card.fragment.visible .svg-arrow {
+      animation: drawArrow 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .slide.active .card:not(.fragment) .svg-label,
+    .slide.active .card.fragment.visible .svg-label {
+      animation: labelFade 0.35s ease forwards;
+    }
+    .slide.active .svg-d1 { animation-delay: 0.18s !important; }
+    .slide.active .svg-d2 { animation-delay: 0.48s !important; }
+    .slide.active .svg-d3 { animation-delay: 0.65s !important; }
+    .slide.active .svg-d4 { animation-delay: 0.82s !important; }
+    .slide.active .svg-d5 { animation-delay: 1.02s !important; }
+
+    @keyframes drawArrow {
+      from { stroke-dashoffset: 370; }
+      to   { stroke-dashoffset: 0; }
+    }
+    @keyframes labelFade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* 3. Cover sync arrows & Demo banner subtle pulse */
+    .cover-sync {
+      display: inline-block;
+      animation: softFloat 2.4s ease-in-out infinite;
+    }
+    @keyframes softFloat {
+      0%, 100% { transform: translateY(0); opacity: 0.78; }
+      50%      { transform: translateY(-3px); opacity: 1; }
+    }
+
+    .slide.active .demo-banner:not(.fragment),
+    .slide.active .demo-banner.fragment.visible {
+      animation: demoPulse 2.8s ease-in-out 0.6s infinite;
+    }
+    @keyframes demoPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(2, 132, 199, 0); }
+      50%      { box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide.active,
+      .slide.active .slide-body > *:not(.fragment),
+      .slide.active tbody tr,
+      .cover-sync,
+      .slide.active .demo-banner,
+      .slide.active .err-line {
+        animation: none !important;
+      }
+      .svg-arrow {
+        stroke-dashoffset: 0 !important;
+        animation: none !important;
+      }
+      .svg-label {
+        opacity: 1 !important;
+        animation: none !important;
+      }
+      .err-line {
+        background-size: 100% 100% !important;
+      }
+      .fragment {
+        opacity: 1 !important;
+        transform: none !important;
+        pointer-events: auto !important;
+        transition: none !important;
+      }
+    }
+
     /* Subtle top accent bar */
     .slide::before {
       content: "";
@@ -312,12 +451,21 @@
     .num { color: #d97706; font-weight: 600; }
     .cm { color: #64748b; font-style: italic; }
     .err-line {
-      background: #fee2e2;
+      background-image: linear-gradient(90deg, #fee2e2 0%, #fee2e2 100%);
+      background-repeat: no-repeat;
+      background-size: 0% 100%;
       display: inline-block;
-      width: 100%;
-      margin: 0 -20px;
-      padding: 0 20px;
+      width: calc(100% + 32px);
+      margin: 0 -16px;
+      padding: 0 12px;
       border-left: 4px solid var(--red);
+    }
+    .slide.active .err-line {
+      animation: highlightSweep 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.32s forwards;
+    }
+    @keyframes highlightSweep {
+      from { background-size: 0% 100%; }
+      to   { background-size: 100% 100%; }
     }
 
     /* Tables */
@@ -536,6 +684,36 @@
       transition: width 0.2s ease;
     }
 
+    /* Fullscreen minimal mode: hide bottom bar, keep only blue progress bar */
+    body.is-fullscreen .stage {
+      padding-bottom: 6px;
+    }
+
+    body.is-fullscreen .controls {
+      height: auto;
+      padding: 0;
+      background: transparent;
+      backdrop-filter: none;
+      border-top: none;
+      pointer-events: none;
+    }
+
+    body.is-fullscreen .controls .ctrl-group:first-child,
+    body.is-fullscreen .controls .ctrl-group:last-child {
+      display: none;
+    }
+
+    body.is-fullscreen .controls .ctrl-group:nth-child(2) {
+      width: 100%;
+    }
+
+    body.is-fullscreen .progress-track {
+      width: 100%;
+      height: 6px;
+      border-radius: 0;
+      background: rgba(148, 163, 184, 0.25);
+    }
+
     /* Grid Overview Modal */
     .overview-overlay {
       position: fixed;
@@ -627,8 +805,28 @@
       .slide {
         position: relative;
         display: flex !important;
+        animation: none !important;
         page-break-after: always;
         break-after: page;
+      }
+      .slide .slide-body > *,
+      .slide tbody tr,
+      .fragment {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+      }
+      .svg-arrow {
+        stroke-dashoffset: 0 !important;
+        animation: none !important;
+      }
+      .svg-label {
+        opacity: 1 !important;
+        animation: none !important;
+      }
+      .err-line {
+        background-size: 100% 100% !important;
+        animation: none !important;
       }
     }
   </style>
@@ -659,7 +857,7 @@
                 <div style="font-weight: 800; color: var(--blue); font-size: 17px;">TypeScript + Prisma ORM</div>
                 <div style="font-size: 14px; color: var(--text-muted);">Modelos tipados &amp; consultas</div>
               </div>
-              <div style="text-align: center; font-weight: 800; color: var(--text-light); font-size: 18px;">⇅ SQL Traduzido ⇅</div>
+              <div style="text-align: center; font-weight: 800; color: var(--text-light); font-size: 18px;"><span class="cover-sync">⇅ SQL Traduzido ⇅</span></div>
               <div class="card card-white" style="padding: 16px;">
                 <div style="font-weight: 800; color: var(--text); font-size: 17px;">MySQL 8.0 (TechStore)</div>
                 <div style="font-size: 14px; color: var(--text-muted);">Inspeção real via <code class="inline">mysql.general_log</code></div>
@@ -967,7 +1165,7 @@
                 <li><strong>Abstração enganosa:</strong> o código fica limpo, mas esconde quantas queries vão ao banco.</li>
                 <li><strong>Perda de controle fino:</strong> consultas analíticas complexas podem gerar SQL subótimo.</li>
               </ul>
-              <div class="card card-red" style="padding: 14px 18px; margin-top: auto;">
+              <div class="card card-red fragment" style="padding: 14px 18px; margin-top: auto;">
                 <div style="font-size: 16px; font-weight: 800; color: var(--red);">Gancho para o Pilar 2:</div>
                 <div style="font-size: 16px; color: var(--text);">“E a armadilha mais famosa dessa abstração é o <strong>Problema N+1</strong>.”</div>
               </div>
@@ -1026,34 +1224,34 @@
                 <text x="575" y="136" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" fill="#475569">TechStore DB</text>
 
                 <!-- 1 blue arrow -->
-                <line x1="145" y1="44" x2="500" y2="44" stroke="#0284c7" stroke-width="3" marker-end="url(#arrBlue)" />
-                <text x="322" y="34" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" fill="#0284c7">[1] SELECT * FROM pedidos</text>
+                <line class="svg-arrow svg-d1" x1="145" y1="44" x2="500" y2="44" stroke="#0284c7" stroke-width="3" marker-end="url(#arrBlue)" />
+                <text class="svg-label svg-d1" x="322" y="34" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" fill="#0284c7">[1] SELECT * FROM pedidos</text>
 
                 <!-- Divider -->
                 <line x1="160" y1="68" x2="490" y2="68" stroke="#e2e8f0" stroke-dasharray="4 4" stroke-width="1.5" />
                 <text x="322" y="84" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#dc2626">DENTRO DO LOOP (N = 35)</text>
 
                 <!-- Multiple red arrows -->
-                <line x1="145" y1="104" x2="500" y2="104" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)" />
-                <text x="322" y="99" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#dc2626">[2] SELECT * FROM clientes WHERE id = 1</text>
+                <line class="svg-arrow svg-d2" x1="145" y1="104" x2="500" y2="104" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)" />
+                <text class="svg-label svg-d2" x="322" y="99" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#dc2626">[2] SELECT * FROM clientes WHERE id = 1</text>
 
-                <line x1="145" y1="132" x2="500" y2="132" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)" />
-                <text x="322" y="127" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#dc2626">[3] SELECT * FROM clientes WHERE id = 2</text>
+                <line class="svg-arrow svg-d3" x1="145" y1="132" x2="500" y2="132" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)" />
+                <text class="svg-label svg-d3" x="322" y="127" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#dc2626">[3] SELECT * FROM clientes WHERE id = 2</text>
 
-                <line x1="145" y1="160" x2="500" y2="160" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)" />
-                <text x="322" y="155" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#dc2626">[4] SELECT * FROM clientes WHERE id = 3</text>
+                <line class="svg-arrow svg-d4" x1="145" y1="160" x2="500" y2="160" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)" />
+                <text class="svg-label svg-d4" x="322" y="155" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#dc2626">[4] SELECT * FROM clientes WHERE id = 3</text>
 
-                <text x="322" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#dc2626">⋮  (+ 31 viagens repetidas)</text>
+                <text class="svg-label svg-d4" x="322" y="185" text-anchor="middle" font-family="Inter, sans-serif" font-size="15" font-weight="800" fill="#dc2626">⋮  (+ 31 viagens repetidas)</text>
 
-                <line x1="145" y1="208" x2="500" y2="208" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)" />
-                <text x="322" y="203" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#dc2626">[36] SELECT * FROM clientes WHERE id = 2</text>
+                <line class="svg-arrow svg-d5" x1="145" y1="208" x2="500" y2="208" stroke="#dc2626" stroke-width="2" marker-end="url(#arrRed)" />
+                <text class="svg-label svg-d5" x="322" y="203" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="#dc2626">[36] SELECT * FROM clientes WHERE id = 2</text>
               </svg>
             </div>
 
-            <div class="card card-red" style="justify-content: space-between; text-align: center;">
+            <div class="card card-red fragment" style="justify-content: space-between; text-align: center;">
               <div style="font-size: 14px; font-weight: 800; color: var(--red); text-transform: uppercase; letter-spacing: 0.05em;">Impacto na TechStore</div>
               <div>
-                <div class="metric-big" style="color: var(--red);">36</div>
+                <div class="metric-big" style="color: var(--red);" data-countup="36">36</div>
                 <div style="font-size: 18px; font-weight: 700; color: var(--text); margin-top: 6px;">queries para 1 listagem</div>
                 <div style="font-size: 15px; color: var(--text-muted); margin-top: 4px;">(1 query + 35 no loop)</div>
               </div>
@@ -1090,7 +1288,7 @@
                 <span><span class="code-dots"><span></span><span></span><span></span></span>TypeScript — Loop com N+1</span>
                 <span style="color: var(--red);">02-problema-n1.ts</span>
               </div>
-              <pre class="pre-compact"><span class="kw">const</span> pedidos = <span class="kw">await</span> prisma.pedido.<span class="fn">findMany</span>(); <span class="cm">// 1 query</span>
+              <pre class="pre-compact" style="font-size: 14px;"><span class="kw">const</span> pedidos = <span class="kw">await</span> prisma.pedido.<span class="fn">findMany</span>(); <span class="cm">// 1 query</span>
 
 <span class="kw">for</span> (<span class="kw">const</span> p <span class="kw">of</span> pedidos) {
 <span class="err-line">  <span class="kw">const</span> cli = <span class="kw">await</span> prisma.cliente.<span class="fn">findUnique</span>({ <span class="cm">// +N queries!</span></span>
@@ -1104,7 +1302,7 @@
                 <span><span class="code-dots"><span></span><span></span><span></span></span>O que chega ao MySQL</span>
                 <span style="color: var(--red);">36 round-trips</span>
               </div>
-              <pre class="pre-compact"><span class="cm">-- [1] Busca a lista inicial</span>
+              <pre class="pre-compact" style="font-size: 14px;"><span class="cm">-- [1] Busca a lista inicial</span>
 <span class="kw">SELECT</span> ... <span class="kw">FROM</span> pedidos;
 
 <span class="cm">-- [2..36] Uma query nova a cada volta do for</span>
@@ -1112,13 +1310,13 @@
             </div>
           </div>
 
-          <div class="grid-2" style="gap: 18px;">
+          <div class="grid-2 fragment" style="gap: 18px;">
             <div class="card card-red" style="flex-direction: row; align-items: center; justify-content: space-between; padding: 16px 24px;">
               <div>
                 <div style="font-size: 14px; font-weight: 700; color: var(--red); text-transform: uppercase;">Medido no general_log</div>
                 <div style="font-size: 18px; font-weight: 700; color: var(--text);">35 pedidos listados</div>
               </div>
-              <div class="metric-big" style="font-size: 42px; color: var(--red);">36 queries</div>
+              <div class="metric-big" style="font-size: 42px; color: var(--red);"><span data-countup="36">36</span> queries</div>
             </div>
 
             <div class="card card-white" style="padding: 16px 24px; justify-content: center;">
@@ -1128,7 +1326,7 @@
             </div>
           </div>
 
-          <div class="demo-banner demo-red">
+          <div class="demo-banner demo-red fragment">
             <span>▶ DEMO AO VIVO — TechStore CLI: Opção 2 (Problema N+1 + general_log)</span>
             <span class="demo-cmd">npm start → [2]</span>
           </div>
@@ -1177,10 +1375,10 @@
                 <text x="46" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#0f172a">App TS</text>
                 <rect x="412" y="6" width="84" height="44" rx="8" fill="#ffffff" stroke="#16a34a" stroke-width="1.8" />
                 <text x="454" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#0f172a">MySQL</text>
-                <line x1="92" y1="19" x2="404" y2="19" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrGreen1)" />
-                <text x="250" y="14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#15803d">[1] SELECT ... FROM pedidos</text>
-                <line x1="92" y1="41" x2="404" y2="41" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrGreen1)" />
-                <text x="250" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#15803d">[2] SELECT ... FROM clientes WHERE id IN (...)</text>
+                <line class="svg-arrow svg-d1" x1="92" y1="19" x2="404" y2="19" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrGreen1)" />
+                <text class="svg-label svg-d1" x="250" y="14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#15803d">[1] SELECT ... FROM pedidos</text>
+                <line class="svg-arrow svg-d2" x1="92" y1="41" x2="404" y2="41" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrGreen1)" />
+                <text class="svg-label svg-d2" x="250" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#15803d">[2] SELECT ... FROM clientes WHERE id IN (...)</text>
               </svg>
 
               <div class="code-panel">
@@ -1194,7 +1392,7 @@
             </div>
 
             <!-- Coluna 2: relationLoadStrategy: "join" -->
-            <div class="card card-green" style="padding: 16px 20px; gap: 10px; justify-content: flex-start; border-width: 2px;">
+            <div class="card card-green fragment" style="padding: 16px 20px; gap: 10px; justify-content: flex-start; border-width: 2px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
                 <span style="font-size: 18px; font-weight: 800; color: var(--green-dark);">2. <code class="inline">relationLoadStrategy: "join"</code></span>
                 <span class="badge-count bc-green">1 query</span>
@@ -1211,8 +1409,8 @@
                 <text x="46" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#0f172a">App TS</text>
                 <rect x="412" y="6" width="84" height="44" rx="8" fill="#ffffff" stroke="#15803d" stroke-width="1.8" />
                 <text x="454" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#0f172a">MySQL</text>
-                <line x1="92" y1="30" x2="404" y2="30" stroke="#15803d" stroke-width="3" marker-end="url(#arrGreen2)" />
-                <text x="250" y="23" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#15803d">[1] Query única (LEFT JOIN / JSON lateral)</text>
+                <line class="svg-arrow svg-d1" x1="92" y1="30" x2="404" y2="30" stroke="#15803d" stroke-width="3" marker-end="url(#arrGreen2)" />
+                <text class="svg-label svg-d1" x="250" y="23" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#15803d">[1] Query única (LEFT JOIN / JSON lateral)</text>
               </svg>
 
               <div class="code-panel">
@@ -1227,7 +1425,7 @@
             </div>
           </div>
 
-          <div class="demo-banner demo-green">
+          <div class="demo-banner demo-green fragment">
             <span>▶ DEMO AO VIVO — Opção 3 (include IN: 2 queries) e Opção 4 (join: 1 query)</span>
             <span class="demo-cmd">npm start → [3] e [4]</span>
           </div>
@@ -1460,21 +1658,21 @@
           </div>
 
           <div class="grid-3">
-            <div class="card card-white">
+            <div class="card card-white fragment">
               <div class="card-title" style="color: var(--blue);">1. Produtividade ≠ Isenção</div>
               <div class="card-text">ORM não substitui o conhecimento de Banco de Dados Relacional e modelagem.</div>
             </div>
-            <div class="card card-white">
+            <div class="card card-white fragment">
               <div class="card-title" style="color: var(--red);">2. Sempre meça queries</div>
               <div class="card-text">Logs do Prisma e <code class="inline">general_log</code> no MySQL revelam o N+1 escondido no código.</div>
             </div>
-            <div class="card card-white">
+            <div class="card card-white fragment">
               <div class="card-title" style="color: var(--green-dark);">3. Ferramenta certa</div>
               <div class="card-text"><code class="inline">include</code> e <code class="inline">select</code> no dia a dia; <code class="inline">$queryRaw</code> quando o SQL analítico exigir.</div>
             </div>
           </div>
 
-          <div style="text-align: center; padding-top: 8px;">
+          <div class="fragment" style="text-align: center; padding-top: 8px;">
             <span style="font-size: 26px; font-weight: 800; color: var(--text);">Obrigado!</span>
           </div>
         </div>
@@ -1537,22 +1735,112 @@
       let current = 0;
 
       function scaleDeck() {
-        const padW = 32;
-        const padH = 68;
+        const isFs = Boolean(document.fullscreenElement);
+        const padW = isFs ? 16 : 32;
+        const padH = isFs ? 16 : 68;
+        const maxScale = isFs ? 1.6 : 1.35;
         const availW = window.innerWidth - padW;
         const availH = window.innerHeight - padH;
-        const scale = Math.min(availW / 1280, availH / 720, 1.35);
+        const scale = Math.min(availW / 1280, availH / 720, maxScale);
         viewport.style.transform = `scale(${Math.max(scale, 0.25)})`;
       }
 
-      function showSlide(index) {
-        current = Math.max(0, Math.min(index, slides.length - 1));
-        slides.forEach((s, i) => s.classList.toggle("active", i === current));
-        counterLabel.textContent = `Slide ${current + 1} / ${slides.length}`;
+      function getFragments(slideEl) {
+        return Array.from(slideEl.querySelectorAll(".fragment"));
+      }
+
+      function updateControls() {
+        const activeSlide = slides[current];
+        const frags = getFragments(activeSlide);
+        const visibleCount = frags.filter((f) => f.classList.contains("visible")).length;
+        const hasPendingFrag = visibleCount < frags.length;
+
+        counterLabel.textContent = frags.length > 0
+          ? `Slide ${current + 1} / ${slides.length} • Etapa ${visibleCount}/${frags.length}`
+          : `Slide ${current + 1} / ${slides.length}`;
         progressFill.style.width = `${((current + 1) / slides.length) * 100}%`;
-        btnPrev.disabled = current === 0;
-        btnNext.disabled = current === slides.length - 1;
+        btnPrev.disabled = current === 0 && visibleCount === 0;
+        btnNext.disabled = current === slides.length - 1 && !hasPendingFrag;
+      }
+
+      function runCountUps(rootEl, immediate = false) {
+        const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+        const targets = Array.from(rootEl.querySelectorAll("[data-countup]"));
+        targets.forEach((el) => {
+          const frag = el.closest(".fragment");
+          if (frag && !frag.classList.contains("visible")) return;
+
+          const endVal = Number(el.getAttribute("data-countup")) || 0;
+          if (immediate || reduceMotion) {
+            el.textContent = String(endVal);
+            return;
+          }
+
+          const duration = 550;
+          const startTime = performance.now();
+          el.textContent = "0";
+
+          function tick(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = String(Math.round(endVal * eased));
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              el.textContent = String(endVal);
+            }
+          }
+          requestAnimationFrame(tick);
+        });
+      }
+
+      function showSlide(index, options = {}) {
+        const prevIndex = current;
+        const targetIndex = Math.max(0, Math.min(index, slides.length - 1));
+        const direction = options.direction || (targetIndex >= prevIndex ? "next" : "prev");
+        const revealAll = Boolean(options.revealAll);
+
+        current = targetIndex;
+        slides.forEach((s, i) => {
+          s.classList.remove("dir-next", "dir-prev");
+          const isTarget = i === current;
+          s.classList.toggle("active", isTarget);
+          if (isTarget) {
+            void s.offsetWidth;
+            s.classList.add(direction === "prev" ? "dir-prev" : "dir-next");
+            getFragments(s).forEach((f) => f.classList.toggle("visible", revealAll));
+            runCountUps(s, revealAll);
+          }
+        });
+
+        updateControls();
         renderOverviewCards();
+      }
+
+      function nextStep() {
+        const pending = getFragments(slides[current]).find((f) => !f.classList.contains("visible"));
+        if (pending) {
+          pending.classList.add("visible");
+          runCountUps(pending, false);
+          updateControls();
+          return;
+        }
+        if (current < slides.length - 1) {
+          showSlide(current + 1, { direction: "next", revealAll: false });
+        }
+      }
+
+      function prevStep() {
+        const revealed = getFragments(slides[current]).filter((f) => f.classList.contains("visible"));
+        if (revealed.length > 0) {
+          revealed[revealed.length - 1].classList.remove("visible");
+          updateControls();
+          return;
+        }
+        if (current > 0) {
+          showSlide(current - 1, { direction: "prev", revealAll: true });
+        }
       }
 
       function renderOverviewCards() {
@@ -1568,7 +1856,7 @@
             <div class="thumb-sub">${kicker}</div>
           `;
           card.addEventListener("click", () => {
-            showSlide(i);
+            showSlide(i, { direction: i >= current ? "next" : "prev", revealAll: false });
             overviewOverlay.classList.remove("open");
           });
           overviewGrid.appendChild(card);
@@ -1583,8 +1871,20 @@
         }
       }
 
-      btnPrev.addEventListener("click", () => showSlide(current - 1));
-      btnNext.addEventListener("click", () => showSlide(current + 1));
+      btnPrev.addEventListener("click", prevStep);
+      btnNext.addEventListener("click", nextStep);
+      stage.addEventListener("click", (e) => {
+        if (e.target.closest("button, a, pre, code")) return;
+        if (window.getSelection()?.toString()) return;
+        nextStep();
+      });
+      stage.addEventListener("contextmenu", (e) => {
+        if (overviewOverlay.classList.contains("open")) return;
+        if (e.target.closest("button, a, pre, code")) return;
+        if (window.getSelection()?.toString()) return;
+        e.preventDefault();
+        prevStep();
+      });
       btnOverview.addEventListener("click", () => {
         renderOverviewCards();
         overviewOverlay.classList.add("open");
@@ -1600,14 +1900,14 @@
         }
         if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
           e.preventDefault();
-          showSlide(current + 1);
+          nextStep();
         } else if (e.key === "ArrowLeft" || e.key === "PageUp") {
           e.preventDefault();
-          showSlide(current - 1);
+          prevStep();
         } else if (e.key === "Home") {
-          showSlide(0);
+          showSlide(0, { direction: "prev", revealAll: false });
         } else if (e.key === "End") {
-          showSlide(slides.length - 1);
+          showSlide(slides.length - 1, { direction: "next", revealAll: false });
         } else if (e.key.toLowerCase() === "g") {
           renderOverviewCards();
           overviewOverlay.classList.add("open");
@@ -1616,9 +1916,14 @@
         }
       });
 
+      document.addEventListener("fullscreenchange", () => {
+        document.body.classList.toggle("is-fullscreen", Boolean(document.fullscreenElement));
+        scaleDeck();
+      });
+
       window.addEventListener("resize", scaleDeck);
       scaleDeck();
-      showSlide(0);
+      showSlide(0, { direction: "next", revealAll: false });
     })();
   </script>
 </body>
