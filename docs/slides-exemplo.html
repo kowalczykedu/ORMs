@@ -867,7 +867,7 @@
         </div>
         <div class="slide-footer">
           <span>Tema 6 • Apresentação (~15 min)</span>
-          <span>1 / 12</span>
+          <span>1 / 13</span>
         </div>
       </section>
 
@@ -878,7 +878,7 @@
             <span class="kicker kicker-slate">Agenda &amp; Banco de Dados</span>
             <h2>O que vamos demonstrar hoje</h2>
           </div>
-          <div class="slide-num">2 / 12</div>
+          <div class="slide-num">2 / 13</div>
         </div>
 
         <div class="slide-body">
@@ -946,7 +946,7 @@
 
         <div class="slide-footer">
           <span>Agenda • Fio condutor: listagem integrada de pedidos + clientes + itens</span>
-          <span>2 / 12</span>
+          <span>2 / 13</span>
         </div>
       </section>
 
@@ -957,7 +957,7 @@
             <span class="kicker kicker-blue">Pilar 1 • ORM &amp; Prisma</span>
             <h2>ORM: A ponte entre Objetos e Tabelas</h2>
           </div>
-          <div class="slide-num">3 / 12</div>
+          <div class="slide-num">3 / 13</div>
         </div>
 
         <div class="slide-body" style="gap: 14px;">
@@ -1056,7 +1056,7 @@
 
         <div class="slide-footer">
           <span>Pilar 1 • Object-Relational Mapping</span>
-          <span>3 / 12</span>
+          <span>3 / 13</span>
         </div>
       </section>
 
@@ -1067,7 +1067,7 @@
             <span class="kicker kicker-blue">Pilar 1 • TypeScript × SQL</span>
             <h2>Do TypeScript para o SQL em 3 linhas</h2>
           </div>
-          <div class="slide-num">4 / 12</div>
+          <div class="slide-num">4 / 13</div>
         </div>
 
         <div class="slide-body" style="gap: 12px;">
@@ -1134,7 +1134,7 @@
 
         <div class="slide-footer">
           <span>Pilar 1 • Micro-Demo 1 (~45s no terminal)</span>
-          <span>4 / 12</span>
+          <span>4 / 13</span>
         </div>
       </section>
 
@@ -1145,7 +1145,7 @@
             <span class="kicker kicker-blue">Pilar 1 • Análise Crítica</span>
             <h2>ORM não é mágica: Ganhos × Riscos</h2>
           </div>
-          <div class="slide-num">5 / 12</div>
+          <div class="slide-num">5 / 13</div>
         </div>
 
         <div class="slide-body">
@@ -1175,7 +1175,7 @@
 
         <div class="slide-footer">
           <span>Pilar 1 • Transição para o Problema N+1</span>
-          <span>5 / 12</span>
+          <span>5 / 13</span>
         </div>
       </section>
 
@@ -1186,7 +1186,7 @@
             <span class="kicker kicker-red">Pilar 2 • O Gargalo Oculto</span>
             <h2>O Problema N+1: 1 + 35 viagens ao banco</h2>
           </div>
-          <div class="slide-num">6 / 12</div>
+          <div class="slide-num">6 / 13</div>
         </div>
 
         <div class="slide-body">
@@ -1267,7 +1267,7 @@
 
         <div class="slide-footer">
           <span>Pilar 2 • Por que o N+1 derruba performance em produção</span>
-          <span>6 / 12</span>
+          <span>6 / 13</span>
         </div>
       </section>
 
@@ -1278,7 +1278,7 @@
             <span class="kicker kicker-red">Pilar 2 • Código &amp; Prova Real</span>
             <h2>Código “inocente”, explosão no MySQL</h2>
           </div>
-          <div class="slide-num">7 / 12</div>
+          <div class="slide-num">7 / 13</div>
         </div>
 
         <div class="slide-body">
@@ -1334,107 +1334,90 @@
 
         <div class="slide-footer">
           <span>Pilar 2 • Micro-Demo 2 (~1m 15s no terminal)</span>
-          <span>7 / 12</span>
+          <span>7 / 13</span>
         </div>
       </section>
 
-      <!-- SLIDE 8: PILAR 3 - EAGER LOADING (include vs join) + MICRO-DEMO 3A -->
-      <section class="slide theme-green" data-title="Pilar 3: Eager Loading (IN vs. JOIN) + Demo 3">
+      <!-- SLIDE 8: ESTRATÉGIA QUERY -->
+      <section class="slide theme-green" data-title="Pilar 3: Estratégia query em lotes">
         <div class="slide-header">
           <div>
             <span class="kicker kicker-green">Pilar 3 • Carregamento Antecipado</span>
-            <h2>Eager Loading: <code class="inline">include</code> (<code class="inline">IN</code>) vs. <code class="inline">join</code></h2>
+            <h2>Estratégia <code class="inline">query</code>: busca em lotes</h2>
           </div>
-          <div class="slide-num">8 / 12</div>
+          <div class="slide-num">8 / 13</div>
         </div>
-
-        <div class="slide-body" style="gap: 14px;">
-          <div class="analogy-strip" style="padding: 10px 18px;">
+        <div class="slide-body" style="gap: 16px;">
+          <div class="analogy-strip" style="padding: 12px 18px;">
             <div class="analogy-icon" style="background: var(--green-bg); color: var(--green-dark); width: 38px; height: 38px; font-size: 19px;">📦</div>
-            <div style="font-size: 16px; color: var(--text-muted);">
-              <strong>Analogia do Pedido Consolidado:</strong> em vez de 35 viagens, carregar todos os clientes necessários de forma antecipada antes do loop.
-            </div>
+            <div style="font-size: 17px; color: var(--text-muted);"><strong>Pedidos + clientes:</strong> o Prisma busca os dados em lotes e os reúne na aplicação.</div>
           </div>
-
-          <div class="grid-2" style="gap: 20px;">
-            <!-- Coluna 1: Padrão IN -->
-            <div class="card card-green" style="padding: 16px 20px; gap: 10px; justify-content: flex-start;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 18px; font-weight: 800; color: var(--green-dark);">1. Padrão (<code class="inline">query</code> / <code class="inline">IN</code>)</span>
-                <span class="badge-count bc-green">2 queries</span>
-              </div>
-
-              <!-- 2 green arrows SVG -->
-              <svg viewBox="0 0 500 58" width="100%" height="58" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <marker id="arrGreen1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                    <path d="M0,0 L6,3 L0,6 Z" fill="#16a34a" />
-                  </marker>
-                </defs>
-                <rect x="4" y="6" width="84" height="44" rx="8" fill="#ffffff" stroke="#16a34a" stroke-width="1.8" />
-                <text x="46" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#0f172a">App TS</text>
-                <rect x="412" y="6" width="84" height="44" rx="8" fill="#ffffff" stroke="#16a34a" stroke-width="1.8" />
-                <text x="454" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#0f172a">MySQL</text>
-                <line class="svg-arrow svg-d1" x1="92" y1="19" x2="404" y2="19" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrGreen1)" />
-                <text class="svg-label svg-d1" x="250" y="14" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#15803d">[1] SELECT ... FROM pedidos</text>
-                <line class="svg-arrow svg-d2" x1="92" y1="41" x2="404" y2="41" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrGreen1)" />
-                <text class="svg-label svg-d2" x="250" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#15803d">[2] SELECT ... FROM clientes WHERE id IN (...)</text>
-              </svg>
-
-              <div class="code-panel">
-                <pre class="pre-compact" style="padding: 12px 14px;"><span class="kw">await</span> prisma.pedido.<span class="fn">findMany</span>({
+          <div class="grid-2" style="gap: 20px; align-items: stretch;">
+            <div class="code-panel">
+              <div class="code-bar"><span>Prisma ORM • TypeScript</span><span class="badge-count bc-green">query</span></div>
+              <pre class="pre-compact" style="font-size: 16px; line-height: 1.65; padding: 20px;"><span class="kw">await</span> prisma.pedido.<span class="fn">findMany</span>({
+  relationLoadStrategy: <span class="str">"query"</span>,
   include: { cliente: <span class="kw">true</span> },
 });</pre>
-              </div>
-              <div style="font-size: 14.5px; color: var(--text-muted);">
-                <strong>Vantagem:</strong> evita duplicar dados do registro pai na rede.
-              </div>
             </div>
+            <div class="code-panel">
+              <div class="code-bar"><span>SQL no MySQL • exemplo ilustrativo</span><span class="badge-count bc-green">2 queries</span></div>
+              <pre class="pre-compact" style="font-size: 16px; line-height: 1.55; padding: 18px;"><span class="cm">-- 1. Busca os pedidos</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> pedidos;
 
-            <!-- Coluna 2: relationLoadStrategy: "join" -->
-            <div class="card card-green fragment" style="padding: 16px 20px; gap: 10px; justify-content: flex-start; border-width: 2px;">
-              <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 18px; font-weight: 800; color: var(--green-dark);">2. <code class="inline">relationLoadStrategy: "join"</code></span>
-                <span class="badge-count bc-green">1 query</span>
-              </div>
+<span class="cm">-- 2. Busca os clientes em lote</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> clientes
+<span class="kw">WHERE</span> id <span class="kw">IN</span> (1, 2, ...);</pre>
+            </div>
+          </div>
+          <div class="card card-green" style="padding: 16px 20px; gap: 5px;">
+            <div class="card-text" style="font-size: 16px;"><strong>Como funciona:</strong> uma consulta busca os pedidos e outra busca, em lote, os clientes necessários. O Prisma associa os resultados na aplicação.</div>
+            <div style="font-size: 13px; color: var(--text-muted);">Os IDs e o SQL são ilustrativos. A contagem efetiva pode ser conferida no general_log.</div>
+          </div>
+          <div class="demo-banner demo-green fragment"><span>▶ DEMO AO VIVO — Opção 3: pedidos + clientes em lote</span><span class="demo-cmd">npm start → [3]</span></div>
+        </div>
+        <div class="slide-footer"><span>Pilar 3 • Micro-Demo: estratégia query</span><span>8 / 13</span></div>
+      </section>
 
-              <!-- 1 green arrow SVG -->
-              <svg viewBox="0 0 500 58" width="100%" height="58" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <marker id="arrGreen2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
-                    <path d="M0,0 L6,3 L0,6 Z" fill="#15803d" />
-                  </marker>
-                </defs>
-                <rect x="4" y="6" width="84" height="44" rx="8" fill="#ffffff" stroke="#15803d" stroke-width="1.8" />
-                <text x="46" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#0f172a">App TS</text>
-                <rect x="412" y="6" width="84" height="44" rx="8" fill="#ffffff" stroke="#15803d" stroke-width="1.8" />
-                <text x="454" y="33" text-anchor="middle" font-family="Inter, sans-serif" font-size="13" font-weight="800" fill="#0f172a">MySQL</text>
-                <line class="svg-arrow svg-d1" x1="92" y1="30" x2="404" y2="30" stroke="#15803d" stroke-width="3" marker-end="url(#arrGreen2)" />
-                <text class="svg-label svg-d1" x="250" y="23" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11.5" font-weight="700" fill="#15803d">[1] Query única (LEFT JOIN / JSON lateral)</text>
-              </svg>
-
-              <div class="code-panel">
-                <pre class="pre-compact" style="padding: 12px 14px;"><span class="kw">await</span> prisma.pedido.<span class="fn">findMany</span>({
+      <!-- SLIDE 9: ESTRATÉGIA JOIN -->
+      <section class="slide theme-green" data-title="Pilar 3: Estratégia join no MySQL">
+        <div class="slide-header">
+          <div>
+            <span class="kicker kicker-green">Pilar 3 • Carregamento Antecipado</span>
+            <h2>Estratégia <code class="inline">join</code>: relação no banco</h2>
+          </div>
+          <div class="slide-num">9 / 13</div>
+        </div>
+        <div class="slide-body" style="gap: 16px;">
+          <div class="analogy-strip" style="padding: 12px 18px;">
+            <div class="analogy-icon" style="background: var(--green-bg); color: var(--green-dark); width: 38px; height: 38px; font-size: 19px;">📦</div>
+            <div style="font-size: 17px; color: var(--text-muted);"><strong>Pedidos + clientes:</strong> o banco busca e organiza os dados relacionados.</div>
+          </div>
+          <div class="grid-2" style="gap: 20px; align-items: stretch;">
+            <div class="code-panel">
+              <div class="code-bar"><span>Prisma ORM • TypeScript</span><span class="badge-count bc-green">join</span></div>
+              <pre class="pre-compact" style="font-size: 16px; line-height: 1.65; padding: 20px;"><span class="kw">await</span> prisma.pedido.<span class="fn">findMany</span>({
   relationLoadStrategy: <span class="str">"join"</span>,
   include: { cliente: <span class="kw">true</span> },
 });</pre>
-              </div>
-              <div style="font-size: 14.5px; color: var(--text-muted);">
-                <strong>Vantagem:</strong> menor latência (apenas 1 ida ao MySQL 8).
-              </div>
+            </div>
+            <div class="code-panel">
+              <div class="code-bar"><span>SQL no MySQL • exemplo ilustrativo</span><span class="badge-count bc-green">1 query</span></div>
+              <pre class="pre-compact" style="font-size: 15px; line-height: 1.4; padding: 15px 18px;"><span class="kw">SELECT</span> p.id,
+  (<span class="kw">SELECT</span> <span class="fn">JSON_OBJECT</span>(
+     <span class="str">'id'</span>, c.id, <span class="str">'nome'</span>, c.nome)
+   <span class="kw">FROM</span> clientes c
+   <span class="kw">WHERE</span> c.id = p.cliente_id) <span class="kw">AS</span> cliente
+<span class="kw">FROM</span> pedidos p;</pre>
             </div>
           </div>
-
-          <div class="demo-banner demo-green fragment">
-            <span>▶ DEMO AO VIVO — Opção 3 (include IN: 2 queries) e Opção 4 (join: 1 query)</span>
-            <span class="demo-cmd">npm start → [3] e [4]</span>
+          <div class="card card-green" style="padding: 16px 20px; gap: 5px;">
+            <div class="card-text" style="font-size: 16px;"><strong>Como funciona:</strong> a subconsulta encontra o cliente de cada pedido e o JSON organiza seus dados. O banco retorna o resultado em uma consulta.</div>
+            <div style="font-size: 13px; color: var(--text-muted);">SQL simplificado para explicar a ideia; o comando real depende da versão e pode ser visto no general_log.</div>
           </div>
+          <div class="demo-banner demo-green fragment"><span>▶ DEMO AO VIVO — Opção 4: pedidos + clientes com join</span><span class="demo-cmd">npm start → [4]</span></div>
         </div>
-
-        <div class="slide-footer">
-          <span>Pilar 3 • Micro-Demo 3a (~1m 15s no terminal)</span>
-          <span>8 / 12</span>
-        </div>
+        <div class="slide-footer"><span>Pilar 3 • Micro-Demo: estratégia join</span><span>9 / 13</span></div>
       </section>
 
       <!-- SLIDE 9: PILAR 3 - ENXUGANDO COM SELECT + CASCATA -->
@@ -1444,7 +1427,7 @@
             <span class="kicker kicker-green">Pilar 3 • Boas Práticas</span>
             <h2>Enxugando colunas com <code class="inline">select</code></h2>
           </div>
-          <div class="slide-num">9 / 12</div>
+          <div class="slide-num">10 / 13</div>
         </div>
 
         <div class="slide-body" style="gap: 16px;">
@@ -1470,7 +1453,7 @@
               <div class="card card-green" style="padding: 18px 20px;">
                 <div class="card-title" style="color: var(--green-dark);">1. Evite “SELECT *” disfarçado</div>
                 <div class="card-text">
-                  <code class="inline">include</code> carrega <strong>todas</strong> as colunas da tabela relacionada. Com <code class="inline">select</code>, trafega apenas o que a tela precisa.
+                  Com <code class="inline">include: { cliente: true }</code>, vêm os campos escalares do cliente. Com <code class="inline">select</code>, escolha apenas o que a tela precisa.
                 </div>
               </div>
 
@@ -1491,7 +1474,7 @@
 
         <div class="slide-footer">
           <span>Pilar 3 • Economia de tráfego e memória</span>
-          <span>9 / 12</span>
+          <span>10 / 13</span>
         </div>
       </section>
 
@@ -1502,7 +1485,7 @@
             <span class="kicker kicker-amber">Pilar 3 • Controle Total</span>
             <h2>Quando abandonar o ORM e ir de SQL Manual</h2>
           </div>
-          <div class="slide-num">10 / 12</div>
+          <div class="slide-num">11 / 13</div>
         </div>
 
         <div class="slide-body" style="gap: 12px;">
@@ -1571,7 +1554,7 @@
 
         <div class="slide-footer">
           <span>Pilar 3 • Micro-Demo 3b (~1m 15s no terminal)</span>
-          <span>10 / 12</span>
+          <span>11 / 13</span>
         </div>
       </section>
 
@@ -1582,7 +1565,7 @@
             <span class="kicker kicker-slate">Fechamento • Síntese Técnica</span>
             <h2>Resumo Comparativo na TechStore (35 pedidos)</h2>
           </div>
-          <div class="slide-num">11 / 12</div>
+          <div class="slide-num">12 / 13</div>
         </div>
 
         <div class="slide-body">
@@ -1606,12 +1589,12 @@
                 <td><strong><code class="inline">include</code> (<code class="inline">query</code>)</strong></td>
                 <td style="text-align: center;"><span class="badge-count bc-green">2</span></td>
                 <td><code class="inline">SELECT</code> pais + <code class="inline">WHERE id IN (...)</code></td>
-                <td>Padrão seguro para listas com relações</td>
+                <td>Carregamento em lote para listas com relações</td>
               </tr>
               <tr>
                 <td><strong><code class="inline">include</code> (<code class="inline">join</code>)</strong></td>
                 <td style="text-align: center;"><span class="badge-count bc-green">1</span></td>
-                <td>Query única (<code class="inline">JOIN</code> / JSON lateral no MySQL 8)</td>
+                <td>Query única com subconsulta e JSON no MySQL 8</td>
                 <td>Quando quiser reduzir round-trips ao mínimo</td>
               </tr>
               <tr>
@@ -1636,7 +1619,7 @@
 
         <div class="slide-footer">
           <span>Fechamento (1/2) • Quadro de referência para perguntas</span>
-          <span>11 / 12</span>
+          <span>12 / 13</span>
         </div>
       </section>
 
@@ -1647,7 +1630,7 @@
             <span class="kicker kicker-blue">Conclusão • AV4 Tema 6</span>
             <h2>Lições-Chave</h2>
           </div>
-          <div class="slide-num">12 / 12</div>
+          <div class="slide-num">13 / 13</div>
         </div>
 
         <div class="slide-body" style="gap: 28px;">
@@ -1679,7 +1662,7 @@
 
         <div class="slide-footer">
           <span>Fechamento (2/2) • TechStore (TypeScript + Prisma + MySQL 8)</span>
-          <span>12 / 12</span>
+          <span>13 / 13</span>
         </div>
       </section>
 
@@ -1691,7 +1674,7 @@
     <div class="ctrl-group">
       <button class="btn" id="btnPrev" title="Slide anterior (←)">← Anterior</button>
       <button class="btn" id="btnNext" title="Próximo slide (→ / Espaço)">Próximo →</button>
-      <span id="counterLabel" style="font-weight: 700; margin-left: 6px; font-variant-numeric: tabular-nums;">Slide 1 / 12</span>
+      <span id="counterLabel" style="font-weight: 700; margin-left: 6px; font-variant-numeric: tabular-nums;">Slide 1 / 13</span>
     </div>
 
     <div class="ctrl-group">
@@ -1710,7 +1693,7 @@
   <!-- Grid Overview Modal -->
   <div class="overview-overlay" id="overviewOverlay">
     <div class="overview-header">
-      <h3 style="font-size: 20px; font-weight: 700;">Visão Geral dos 12 Slides — AV4 Tema 6</h3>
+      <h3 style="font-size: 20px; font-weight: 700;">Visão Geral dos 13 Slides — AV4 Tema 6</h3>
       <button class="btn" id="btnCloseOverview">Fechar (Esc)</button>
     </div>
     <div class="overview-grid" id="overviewGrid"></div>
