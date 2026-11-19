@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="force-motion">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -203,26 +203,26 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .slide.active,
-      .slide.active .slide-body > *:not(.fragment),
-      .slide.active tbody tr,
-      .cover-sync,
-      .slide.active .demo-banner,
-      .slide.active .err-line {
+      html:not(.force-motion) .slide.active,
+      html:not(.force-motion) .slide.active .slide-body > *:not(.fragment),
+      html:not(.force-motion) .slide.active tbody tr,
+      html:not(.force-motion) .cover-sync,
+      html:not(.force-motion) .slide.active .demo-banner,
+      html:not(.force-motion) .slide.active .err-line {
         animation: none !important;
       }
-      .svg-arrow {
+      html:not(.force-motion) .svg-arrow {
         stroke-dashoffset: 0 !important;
         animation: none !important;
       }
-      .svg-label {
+      html:not(.force-motion) .svg-label {
         opacity: 1 !important;
         animation: none !important;
       }
-      .err-line {
+      html:not(.force-motion) .err-line {
         background-size: 100% 100% !important;
       }
-      .fragment {
+      html:not(.force-motion) .fragment {
         opacity: 1 !important;
         transform: none !important;
         pointer-events: auto !important;
@@ -1701,6 +1701,7 @@
     </div>
 
     <div class="ctrl-group">
+      <button class="btn" id="btnMotion" aria-pressed="true">Anima??es: ligadas</button>
       <button class="btn" id="btnOverview" title="Visão em grade (G)">Grade (G)</button>
       <button class="btn" id="btnPrint" title="Exportar para PDF (Ctrl+P)">Exportar PDF</button>
       <button class="btn" id="btnFullscreen" title="Tela cheia (F)">Tela Cheia (F)</button>
@@ -1764,7 +1765,8 @@
       }
 
       function runCountUps(rootEl, immediate = false) {
-        const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+        const reduceMotion = !document.documentElement.classList.contains("force-motion")
+          && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
         const targets = Array.from(rootEl.querySelectorAll("[data-countup]"));
         targets.forEach((el) => {
           const frag = el.closest(".fragment");
@@ -1870,6 +1872,14 @@
           document.exitFullscreen?.();
         }
       }
+
+      const btnMotion = document.getElementById("btnMotion");
+      btnMotion.addEventListener("click", () => {
+        const enabled = document.documentElement.classList.toggle("force-motion");
+        btnMotion.textContent = enabled ? "Anima??es: ligadas" : "Anima??es: sistema";
+        btnMotion.setAttribute("aria-pressed", String(enabled));
+        showSlide(current, { direction: "next", revealAll: false });
+      });
 
       btnPrev.addEventListener("click", prevStep);
       btnNext.addEventListener("click", nextStep);
